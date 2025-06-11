@@ -1,157 +1,97 @@
-import React from 'react'
+import React from 'react';
 import logo from '../assets/images/logo.jpg';
-import { Link } from 'react-router'
+import { Link as RouterLink } from 'react-router';
+import { Box, Typography, Link, Divider } from '@mui/material';
 
 export default function Footer() {
   return (
     <>
-      <div className='px-40 py-16 grid grid-cols-6'>
-      <div>
-        <ul>
-          <li className='text-gray-500 mb-3'>Product</li>
-          <li>
-            <Link to='#'>Overview</Link>
-          </li>
-          <li>
-            <Link to='#'>Features</Link>
-          </li>
-          <li>
-            <Link to='#'>Solutions</Link>
-          </li>
-          <li>
-            <Link to='#'>Tutorials</Link>
-          </li>
-          <li>
-            <Link to='#'>Pricing</Link>
-          </li>
-          <li>
-            <Link to='#'>Releases</Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li className='text-gray-500 mb-3'>Company</li>
-          <li>
-            <Link to='#'>About us</Link>
-          </li>
-          <li>
-            <Link to='#'>Careers</Link>
-          </li>
-          <li>
-            <Link to='#'>Press</Link>
-          </li>
-          <li>
-            <Link to='#'>News</Link>
-          </li>
-          <li>
-            <Link to='#'>Media kit</Link>
-          </li>
-          <li>
-            <Link to='#'>Contact</Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li className='text-gray-500 mb-3'>Resources</li>
-          <li>
-            <Link to='#'>Blog</Link>
-          </li>
-          <li>
-            <Link to='#'>Newsletter</Link>
-          </li>
-          <li>
-            <Link to='#'>Events</Link>
-          </li>
-          <li>
-            <Link to='#'>Help center</Link>
-          </li>
-          <li>
-            <Link to='#'>Tutorials</Link>
-          </li>
-          <li>
-            <Link to='#'>Support</Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li className='text-gray-500 mb-3'>Use cases</li>
-          <li>
-            <Link to='#'>Startups</Link>
-          </li>
-          <li>
-            <Link to='#'>Enterprise</Link>
-          </li>
-          <li>
-            <Link to='#'>Government</Link>
-          </li>
-          <li>
-            <Link to='#'>SaaS center</Link>
-          </li>
-          <li>
-            <Link to='#'>Market places</Link>
-          </li>
-          <li>
-            <Link to='#'>Ecommerce</Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li className='text-gray-500 mb-3'>Social</li>
-          <li>
-            <Link to='#'>X</Link>
-          </li>
-          <li>
-            <Link to='#'>LinkedIn</Link>
-          </li>
-          <li>
-            <Link to='#'>Facebook</Link>
-          </li>
-          <li>
-            <Link to='#'>GitHub</Link>
-          </li>
-          <li>
-            <Link to='#'>Instagram</Link>
-          </li>
-          <li>
-            <Link to='#'>Dribble</Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul>
-          <li className='text-gray-500 mb-3'>Legal</li>
-          <li>
-            <Link to='#'>Terms</Link>
-          </li>
-          <li>
-            <Link to='#'>Privacy</Link>
-          </li>
-          <li>
-            <Link to='#'>Cookies</Link>
-          </li>
-          <li>
-            <Link to='#'>Licenses</Link>
-          </li>
-          <li>
-            <Link to='#'>Settings</Link>
-          </li>
-          <li>
-            <Link to='#'>Contact</Link>
-          </li>
-        </ul>
-      </div>
+      <Box sx={{ px: 40, py: 16, display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 2 }}>
+        {/* Product */}
+        <Box>
+          <Typography sx={{ color: 'gray', mb: 1 }}>Product</Typography>
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Overview</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Features</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Solutions</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Tutorials</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Pricing</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Releases</Link>
+          </Box>
+        </Box>
 
-    </div>
-    <hr className='text-gray-300'/>
-    <div className='px-40 py-8 flex justify-between'>
-      <img className='h-8 w-auto' src={logo} alt="" />
-      <p className='text-gray-400'>© 2077 ACGR. All rights reserved.</p>
-    </div>
+        {/* Company */}
+        <Box>
+          <Typography sx={{ color: 'gray', mb: 1 }}>Company</Typography>
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">About us</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Careers</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Press</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">News</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Media kit</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Contact</Link>
+          </Box>
+        </Box>
+
+        {/* Resources */}
+        <Box>
+          <Typography sx={{ color: 'gray', mb: 1 }}>Resources</Typography>
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Blog</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Newsletter</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Events</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Help center</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Tutorials</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Support</Link>
+          </Box>
+        </Box>
+
+        {/* Use Cases */}
+        <Box>
+          <Typography sx={{ color: 'gray', mb: 1 }}>Use cases</Typography>
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Startups</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Enterprise</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Government</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">SaaS center</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Market places</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Ecommerce</Link>
+          </Box>
+        </Box>
+
+        {/* Social */}
+        <Box>
+          <Typography sx={{ color: 'gray', mb: 1 }}>Social</Typography>
+          <Box display="flex" flexDirection="column" gap={1}>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">X</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">LinkedIn</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Facebook</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">GitHub</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Instagram</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Dribble</Link>
+          </Box>
+        </Box>
+
+        {/* Legal */}
+        <Box>
+          <Typography sx={{ color: 'gray', mb: 1 }}>Legal</Typography>
+          <Box  display="flex" flexDirection="column" gap={1}>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Terms</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Privacy</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Cookies</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Licenses</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Settings</Link>
+            <Link sx={{textDecoration:'none', color: '#3c434d'}} component={RouterLink} to="#">Contact</Link>
+          </Box>
+        </Box>
+      </Box>
+
+      <Divider sx={{ bgcolor: 'gray.300' }} />
+
+      <Box sx={{ px: 40, py: 8, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box component="img" src={logo} alt="Logo" sx={{ height: 32, width: 'auto' }} />
+        <Typography sx={{ color: 'gray' }}>© 2077 ACGR. All rights reserved.</Typography>
+      </Box>
     </>
-    
-  )
+  );
 }

@@ -1,73 +1,103 @@
 import React, { useState } from 'react';
 import logo from '../assets/images/logo.jpg';
-import { Link, NavLink } from 'react-router';
-
+import { Link as RouterLink, NavLink as RouterNavLink } from 'react-router';
+import {
+    AppBar,
+    Toolbar,
+    IconButton,
+    Typography,
+    Button,
+    Box,
+    Drawer,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemText
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    
+
+    const toggleDrawer = () => {
+        setIsOpen(!isOpen);
+    };
 
     return (
-        <nav className="bg-transparent">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="relative flex h-16 items-center justify-between">
-                    <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            type="button"
-                            className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                            aria-controls="mobile-menu"
-                            aria-expanded={isOpen}
+        <>
+            <AppBar position="static" sx={{ background: 'transparent', boxShadow: 'none' }}>
+                <Toolbar sx={{ justifyContent: 'space-between' }}>
+                    {/* Left Side */}
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            <img src={logo} alt="Logo" style={{ height: 32, width: 'auto' }} />
+                        </Box>
+                    </Box>
+
+                    {/* Middle Links */}
+                    <Box sx={{ display: { xs: 'none', sm: 'flex' }, gap: 2 }}>
+                        <Button component={RouterNavLink} to="/" sx={{ fontWeight: 600, color: '#374151' }}>
+                            Home
+                        </Button>
+                        <Button component={RouterNavLink} to="/posts" sx={{ fontWeight: 600, color: '#374151' }}>
+                            Posts
+                        </Button>
+                    </Box>
+
+                    {/* Right Side Buttons */}
+                    <Box sx={{ display: 'flex', gap: 2 }}>
+                        <Button component={RouterLink} to="/login" variant="outlined" sx={{ bgcolor: 'white', fontWeight: 500 }}>
+                            Log in
+                        </Button>
+                        <Button component={RouterLink} to="/signup" sx={{ bgcolor: '#7F56D9', color: 'white', fontWeight: 500 }}>
+                            Sign up
+                        </Button>
+
+                        {/* Hamburger */}
+                        <IconButton
+                            sx={{ display: { sm: 'none' }, color: '#374151' }}
+                            edge="start"
+                            onClick={toggleDrawer}
                         >
-                            <span className="sr-only">Open main menu</span>
-                            {isOpen ? (
-                                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            ) : (
-                                <svg className="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            )}
-                        </button>
-                    </div>
-                    <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                        <div className="flex shrink-0 items-center [@media(max-width:530px)]:hidden">
-                            <img className="h-8 w-auto" src={logo} alt="Logo" />
-                        </div>
+                            <MenuIcon />
+                        </IconButton>
+                    </Box>
+                </Toolbar>
+            </AppBar>
 
-                        <div className="hidden sm:ml-6 sm:block">
-                            <div className="flex space-x-4">
-                                <NavLink to="/" className="rounded-md px-3 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900">Home</NavLink>
-                                <NavLink to="/posts" className="rounded-md px-3 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900">Posts</NavLink>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                        <div className="flex space-x-4">
-                            <Link to="/login" className="btn bg-white font-medium px-4 py-1 rounded">Log in</Link>
-
-                            <Link to="/signup" className="btn font-medium text-white px-4 py-1 rounded" style={{ backgroundColor: '#7F56D9' }}>
-                                Sign up
-                            </Link>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-            
-
-            {isOpen && (
-                <div className="sm:hidden" id="mobile-menu">
-                    <div className="space-y-1 px-2 pt-2 pb-3">
-                        <NavLink to="/" className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100">Dashboard</NavLink>
-                        <NavLink to="/team" className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100">Team</NavLink>
-                        <NavLink to="/projects" className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100">Projects</NavLink>
-                        <NavLink to="/calendar" className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-100">Calendar</NavLink>
-                    </div>
-                </div>
-            )}
-        </nav>
+            {/* Drawer for mobile */}
+            <Drawer anchor="left" open={isOpen} onClose={toggleDrawer}>
+                <Box sx={{ width: 250, p: 2 }}>
+                    <Box display="flex" justifyContent="flex-end">
+                        <IconButton onClick={toggleDrawer}>
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
+                    <List>
+                        <ListItem disablePadding>
+                            <ListItemButton component={RouterNavLink} to="/" onClick={toggleDrawer}>
+                                <ListItemText primary="Dashboard" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton component={RouterNavLink} to="/team" onClick={toggleDrawer}>
+                                <ListItemText primary="Team" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton component={RouterNavLink} to="/projects" onClick={toggleDrawer}>
+                                <ListItemText primary="Projects" />
+                            </ListItemButton>
+                        </ListItem>
+                        <ListItem disablePadding>
+                            <ListItemButton component={RouterNavLink} to="/calendar" onClick={toggleDrawer}>
+                                <ListItemText primary="Calendar" />
+                            </ListItemButton>
+                        </ListItem>
+                    </List>
+                </Box>
+            </Drawer>
+        </>
     );
 }

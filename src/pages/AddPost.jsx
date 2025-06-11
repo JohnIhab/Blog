@@ -1,7 +1,17 @@
 import axios from 'axios';
-import React, {  useEffect, useRef, useState } from 'react'
-import {useNavigate } from 'react-router'
+import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Paper,
+  Stack,
+  IconButton,
+} from '@mui/material';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
 export default function AddPost() {
   let navigate = useNavigate();
@@ -73,30 +83,87 @@ export default function AddPost() {
 
   return (
     <>
-      <fieldset className="fieldset bg-base-200 border-base-300 w-2xl rounded-box border p-4 m-auto mt-20">
-        <legend className="fieldset-legend ">Create post</legend>
-        <label className="label" >Title</label>
-        <input onChange={(e) => setTitle(e.target.value)} type="text" className="input  w-2xl" placeholder="My awesome page" />
-        <label className="label">Description</label>
-        <textarea onChange={(e) => setDescription(e.target.value)}
-          className="textarea  w-2xl" placeholder="Description...."></textarea>
-        <input
-          type="file"
-          accept="image/*"
-          ref={fileInputRef}
-          className="hidden"
-          onChange={handleImageChange}
-        />
-        <button onClick={() => fileInputRef.current.click()} className='flex items-center mt-3 btn btn-ghost w-28'>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-          </svg>
-          <p className='p-1'>Photo</p>
-        </button>
-        {photo && <p className="mt-2 text-sm">Selected: {photo.name}</p>}
-        {photoBase64  && <img src={URL.createObjectURL(photo)} alt="preview" className="w-32 mt-2" />}
-        <button onClick={handlePost} className="btn btn-primary text-white mt-3">Post</button>
-      </fieldset>
+      <Box
+        component={Paper}
+        elevation={3}
+        sx={{
+          maxWidth: 600,
+          mx: 'auto',
+          mt: 10,
+          p: 4,
+          borderRadius: 3,
+        }}
+      >
+        <Typography variant="h5" component="legend" sx={{ mb: 2 }}>
+          Create post
+        </Typography>
+        <Stack spacing={2}>
+          <TextField
+            label="Title"
+            variant="outlined"
+            fullWidth
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="My awesome page"
+            value={title}
+          />
+          <TextField
+            label="Description"
+            variant="outlined"
+            fullWidth
+            multiline
+            minRows={3}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Description...."
+            value={description}
+          />
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            style={{ display: 'none' }}
+            onChange={handleImageChange}
+          />
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <IconButton
+              color="primary"
+              component="span"
+              onClick={() => fileInputRef.current.click()}
+              sx={{ width: 40, height: 40 }}
+            >
+              <PhotoCamera />
+            </IconButton>
+            <Button
+              variant="outlined"
+              onClick={() => fileInputRef.current.click()}
+              sx={{ textTransform: 'none' }}
+            >
+              Photo
+            </Button>
+            {photo && (
+              <Typography variant="body2" sx={{ ml: 2 }}>
+                Selected: {photo.name}
+              </Typography>
+            )}
+          </Stack>
+          {photoBase64 && (
+            <Box sx={{ mt: 2 }}>
+              <img
+                src={URL.createObjectURL(photo)}
+                alt="preview"
+                style={{ width: 128, borderRadius: 8 }}
+              />
+            </Box>
+          )}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handlePost}
+            sx={{ mt: 2 }}
+          >
+            Post
+          </Button>
+        </Stack>
+      </Box>
     </>
-  )
+  );
 }
